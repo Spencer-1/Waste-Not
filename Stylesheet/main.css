@@ -1,0 +1,64 @@
+body {
+  margin: 0px;
+  font-family: 'Alegreya Sans SC';
+  font-size: 18px;
+}
+
+
+h1 {
+  color: white;
+  margin: auto;
+  text-align: center;
+  line-height: 70px;
+}
+
+.banner {
+  height: 70px;
+  background-color: #d2f7ec;
+  width: 100%;
+}
+
+
+.logo-container {
+  width: 100%;
+  margin: 30px auto;
+}
+
+.logo {
+  max-height: 60px;
+  margin: 0% 45%;
+}
+
+/* Central Div */
+
+.middle-container {
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+/* Form */
+
+.foodEntry {
+  margin: 3% 10%;
+}
+
+.formBox {
+  border-color: #d2f7ec;
+}
+
+/* Output List */
+
+.foodList {
+  margin: 0 10%;
+}
+
+#id {
+  margin: 3% 10%;
+}
+
+/* Submit List */
+
+.Submit {
+  margin: 5% 10%;
+}

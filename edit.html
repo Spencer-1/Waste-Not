@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Waste Less</title>
+    <link rel="stylesheet" type="text/css" href="Stylesheet/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+  </head>
+
+  <body onload="showCurrentList()">
+    <div class="banner">
+      <h1>WASTE NOT...</h1>
+    </div>
+
+<!--
+    <div class="logo-container">
+      <img class="logo" src="img/shanti-tattoo.jpg">
+    </div>
+-->
+
+    <div class="middle-container">
+      <form class="foodEntry">
+        Food Item:<br>
+        <input id="foodItem1" class="formBox" type="text" name="foodItem"><br>
+        Use by date:<br>
+        <input id="useByDate1" class="formBox" type="number" name="useByDate"><br>
+        <input class="add" type="button" value="Add" onclick="addItem();">
+      </form>
+
+
+
+      <p class="foodList">Your Food Items:<br>
+        <span id="display"></span>
+      </p>
+
+
+      <button class="Submit" value="submit" onclick="submitList();">Submit</button>
+    </div>
+
+  <script src="Scripts/main.js"></script>
+
+  </body>
+
+</html>

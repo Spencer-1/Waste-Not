@@ -1,12 +1,12 @@
 body {
   margin: 0px;
   font-family: 'Alegreya Sans SC';
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
 h1 {
-  color: white;
+  color: black;
   margin: auto;
   text-align: center;
   line-height: 70px;
@@ -16,17 +16,6 @@ h1 {
   height: 70px;
   background-color: #d2f7ec;
   width: 100%;
-}
-
-
-.logo-container {
-  width: 100%;
-  margin: 30px auto;
-}
-
-.logo {
-  max-height: 60px;
-  margin: 0% 45%;
 }
 
 /* Central Div */
@@ -39,8 +28,12 @@ h1 {
 
 /* Form */
 
+.formText {
+  margin-top: 20px;
+}
+
 .foodEntry {
-  margin: 3% 10%;
+  margin: 3% 5%;
 }
 
 .formBox {
@@ -53,18 +46,62 @@ h1 {
   width: 12%;
 }
 
+.amountBox {
+  border-color: #d2f7ec;
+  width: 30%;
+}
+
+.add {
+    margin: 3% 0;
+    background-color: #e7e7e7;
+    color: black;
+    border-color: none;
+    padding: 8px 24px;
+    border-radius: 4px;
+
+}
+
+.add:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 /* Output List */
 
 .foodList {
-  margin: 0 10%;
+  margin: 3% 5%;
 }
 
-#id {
-  margin: 3% 10%;
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin-top: 12px;
+  margin-left: -10px;
+  font-size: 12px;
+}
+th {
+  color: black;
+  background: #d2f7ec;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 10px solid white;
+}
+tbody tr:nth-child(odd) {
+  background: #f2fff9;
 }
 
 /* Submit List */
 
 .Submit {
-  margin: 5% 10%;
+  margin: 5% 0;
+  background-color: #1a7a57;
+  color: white;
+  border-color: none;
+  padding: 12px 28px;
+  border-radius: 4px;
+}
+
+.Submit:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

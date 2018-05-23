@@ -22,36 +22,38 @@
 
     <div class="middle-container">
       <form class="foodEntry">
-        Food Item:<br>
+        <p class="formText">Food Item:</p>
         <input id="foodItem1" class="formBox" type="text" name="foodItem"><br>
-        Use by date (dd/mm/yy):<br>
+        <p class="formText">Use by date (dd/mm/yy):</p>
         <input id="useByDate1" class="dateBox" type="number" name="useByDate">
         <input id="useByDate2" class="dateBox" type="number" name="useByDate">
-        <input id="useByDate3" class="dateBox" type="number" name="useByDate">
-        <br>
+        <input id="useByDate3" class="dateBox" type="number" name="useByDate"><br>
+        <p class="formText">Amount (g):</p>
+        <input id="amount" class="amountBox" type="number" name="amount"><br>
+        <!-- Consider using Drop down for this and date options -->
         <input class="add" type="button" value="Add" onclick="addItem();">
       </form>
 
 
+      <div class="foodList">
 
+        <p>Your Food Items:</p>
 
-        <p class="foodList">Your Food Items:</p>
-
-        <table class="foodList">
+        <table>
           <thead>
             <tr>
               <th>Food Name</th>
               <th>Use by Date</th>
-              <th>In Date?<th>
+              <th>In Date?</th>
+              <th>Amount</th>
             </tr>
           </head>
           <tbody id="display">
           </tbody>
         </table>
 
-
-
-      <button class="Submit" value="submit" onclick="submitList();">Submit</button>
+        <button class="Submit" value="submit" onclick="submitList();">SUBMIT</button>
+      </div>
     </div>
 
   <script src="Scripts/main.js"></script>

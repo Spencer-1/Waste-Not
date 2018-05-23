@@ -42,6 +42,7 @@ function addItem() {
   var useByDate2 = document.getElementById("useByDate2").value;
   var useByDate3 = document.getElementById("useByDate3").value;
   var useByDate = document.getElementById("useByDate1").value + '/' + document.getElementById("useByDate2").value + '/' + document.getElementById("useByDate3").value;
+  var foodAmount = document.getElementById("amount").value;
   if (foodItem === "") { /* Accepting user food name */
     alert("You have not entered the name of your food");
   }
@@ -55,12 +56,16 @@ function addItem() {
     alert("That item went off a long time ago!");
   }
   else if (useByDate3 > 30) {
-    alert("You have not entered a valid year - please enter in the format yy eg. for 2018 '18'");
+    alert("You have not entered a valid year - eg. for 2018 enter '18'");
+  }
+  else if (foodAmount < 0) {
+    alert("You have not entered a valid amount");
   }
   else {
-    function Food(name, useBy1, useBy2, useBy3) { /* creating a food object */
+    function Food(name, useBy1, useBy2, useBy3, amount) { /* creating a food object */
       this.name = name;
       this.useBy = useBy1 + '/' + useBy2 + '/' + useBy3;
+      this.amount = amount;
       this.inDate = function() {
         if (mm > useBy2) { /* defining out of date logic */
           return false;
@@ -76,13 +81,13 @@ function addItem() {
         }
       }
     }
-    var newItem = new Food(foodItem, useByDate1, useByDate2, useByDate3);
+    var newItem = new Food(foodItem, useByDate1, useByDate2, useByDate3, foodAmount);
     myFood.push( newItem );
     console.log(myFood);
   }
   if (myFood != null && myFood.length > 0) { /* printing new food list */
     for (var i=0; i<myFood.length; i++) {
-      rowItem += "<tr>" + "<td>" + (myFood[i].name) + "</td>" + "<td>" + (myFood[i].useBy) + "</td>" + "<td>" + myFood[i].inDate() + "</td>" + "</tr>";
+      rowItem += "<tr>" + "<td>" + (myFood[i].name) + "</td>" + "<td>" + (myFood[i].useBy) + "</td>" + "<td>" + myFood[i].inDate() + "</td>" + "<td>" + myFood[i].amount + "</td>" + "</tr>";
       document.getElementById("display").innerHTML = rowItem;
       console.log(rowItem);
     }

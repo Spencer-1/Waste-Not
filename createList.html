@@ -24,8 +24,11 @@
       <form class="foodEntry">
         Food Item:<br>
         <input id="foodItem1" class="formBox" type="text" name="foodItem"><br>
-        Use by date:<br>
-        <input id="useByDate1" class="formBox" type="number" name="useByDate"><br>
+        Use by date (dd/mm/yy):<br>
+        <input id="useByDate1" class="dateBox" type="number" name="useByDate">
+        <input id="useByDate2" class="dateBox" type="number" name="useByDate">
+        <input id="useByDate3" class="dateBox" type="number" name="useByDate">
+        <br>
         <input class="add" type="button" value="Add" onclick="addItem();">
       </form>
 
@@ -33,7 +36,18 @@
 
 
         <p class="foodList">Your Food Items:</p>
-        <div id="display"></div>
+
+        <table class="foodList">
+          <thead>
+            <tr>
+              <th>Food Name</th>
+              <th>Use by Date</th>
+              <th>In Date?<th>
+            </tr>
+          </head>
+          <tbody id="display">
+          </tbody>
+        </table>
 
 
 

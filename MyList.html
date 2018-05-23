@@ -13,10 +13,19 @@
 
 
     <div class="middle-container">
-      <p class="foodList">My Food List:<br>
-        <span id="myFoodList"></span>
-      </p>
+      <p >My Food List:</p>
 
+      <table class="foodList">
+        <thead>
+          <tr>
+            <th>Food Name</th>
+            <th>Use by Date</th>
+            <th>In Date?</th>
+          </tr>
+        </head>
+        <tbody id="myFoodList">
+        </tbody>
+      </table>
 
       <button class="Submit" value="back" onclick="addMore();">Add More Items</button>
 

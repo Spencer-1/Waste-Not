@@ -45,6 +45,12 @@ h1 {
 
 .formBox {
   border-color: #d2f7ec;
+  width: 50%;
+}
+
+.dateBox {
+  border-color: #d2f7ec;
+  width: 12%;
 }
 
 /* Output List */

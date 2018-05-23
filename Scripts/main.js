@@ -51,11 +51,11 @@ function addItem() {
   else if (useByDate2 > 12 || useByDate2 < 0) {
     alert("You have not entered a valid month");
   }
-  else if (useByDate3 < 17) {
+  else if (useByDate3 < 18) {
     alert("That item went off a long time ago!");
   }
   else if (useByDate3 > 30) {
-    alert("Is something that take longer to decay than some plastics really edible?");
+    alert("You have not entered a valid year - please enter in the format yy eg. for 2018 '18'");
   }
   else {
     function Food(name, useBy1, useBy2, useBy3) { /* creating a food object */

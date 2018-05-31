@@ -43,7 +43,8 @@ function addItem() {
   var useByDate3 = document.getElementById("useByDate3").value;
   var useByDate = document.getElementById("useByDate1").value + '/' + document.getElementById("useByDate2").value + '/' + document.getElementById("useByDate3").value;
   var foodAmount = document.getElementById("amount").value;
-  if (foodItem === "") { /* Accepting user food name */
+  var storageType = document.getElementById("storageType").value;
+  if (foodItem === "") { /* Accepting user inputs by setting parameters */
     alert("You have not entered the name of your food");
   }
   else if (useByDate1 > 31 || useByDate1 < 0) { /* Accepting user date inputs */
@@ -62,10 +63,11 @@ function addItem() {
     alert("You have not entered a valid amount");
   }
   else {
-    function Food(name, useBy1, useBy2, useBy3, amount) { /* creating a food object */
+    function Food(name, useBy1, useBy2, useBy3, amount, storage) { /* creating a food object */
       this.name = name;
       this.useBy = useBy1 + '/' + useBy2 + '/' + useBy3;
       this.amount = amount;
+      this.storageType = storageType;
       this.inDate = function() {
         if (mm > useBy2) { /* defining out of date logic */
           return false;
@@ -81,15 +83,22 @@ function addItem() {
         }
       }
     }
-    var newItem = new Food(foodItem, useByDate1, useByDate2, useByDate3, foodAmount);
+    var newItem = new Food(foodItem, useByDate1, useByDate2, useByDate3, foodAmount, storageType);
     myFood.push( newItem );
-    console.log(myFood);
+    /* remove comments to test that the list to be stored is built correctly console.log(myFood); */
   }
   if (myFood != null && myFood.length > 0) { /* printing new food list */
     for (var i=0; i<myFood.length; i++) {
-      rowItem += "<tr>" + "<td>" + (myFood[i].name) + "</td>" + "<td>" + (myFood[i].useBy) + "</td>" + "<td>" + myFood[i].inDate() + "</td>" + "<td>" + myFood[i].amount + "</td>" + "</tr>";
+      rowItem +=
+      "<tr>" +
+        "<td>" + (myFood[i].name) + "</td>" +
+        "<td>" + (myFood[i].useBy) + "</td>" +
+        "<td>" + myFood[i].inDate() + "</td>" + /* hide this once functionality for calendar view is built */
+        "<td>" + (myFood[i].amount) + "</td>" +
+        "<td>" + (myFood[i].storageType) + "</td>" +
+      "</tr>"
       document.getElementById("display").innerHTML = rowItem;
-      console.log(rowItem);
+      /* remove comments for test of printed rows console.log(rowItem); */
     }
     rowItem = "";
     }
@@ -106,6 +115,13 @@ function submitList() {
     window.location = "myList.html";
 }
 
+/* Navigating to Tracker */
+
+function tracker() {
+    localStorage["myFood"] = JSON.stringify(myFood);
+    window.location = "tracker.html";
+}
+
 /* myList Page */
 
 /* Showing existing list (if any) - does this need to come from a server? */
@@ -115,14 +131,20 @@ function showList() {
   if (myFood != null && myFood.length > 0) {
     for (var i=0; i<myFood.length; i++) {
       console.log(myFood);
-      rowItem += "<tr>" + "<td>" + (myFood[i].name) + "</td>" + "<td>" + (myFood[i].useBy) + "</td>" + "<td>" + (myFood[i].inDate()) + "</td>" + "</tr>";
+      rowItem +=
+      "<tr>" +
+        "<td>" + (myFood[i].name) + "</td>" +
+        "<td>" + (myFood[i].useBy) + "</td>" +
+        "<td>" + (myFood[i].amount) + "</td>" +
+        "<td>" + (myFood[i].storageType) + "</td>" +
+      "</tr>";
       console.log(i);
       console.log(rowItem);
       document.getElementById("myFoodList").innerHTML = rowItem;
     }
   }
   else {
-    document.getElementById("myFoodList").innerHTML = "You have not items in your list";
+    document.getElementById("myFoodList").innerHTML = "You have no items in your list";
   }
 }
 

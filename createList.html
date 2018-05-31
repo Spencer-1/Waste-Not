@@ -30,7 +30,16 @@
         <input id="useByDate3" class="dateBox" type="number" name="useByDate"><br>
         <p class="formText">Amount (g):</p>
         <input id="amount" class="amountBox" type="number" name="amount"><br>
-        <!-- Consider using Drop down for this and date options -->
+        <!-- Drop down for this and date options -->
+        <p class="formText">Storage Type:</p> <!-- THIS NEEDS TO BE A DROP DOWN -->
+        <select id="storageType" name="storage" class="amountBox">
+          <option value="fridge">Fridge</option>
+          <option value="freezer">Freezer</option>
+          <option value="Cupboard">Cupboard</option>
+          <option value="Cupboard">Other (Really?!)</option>
+        </select><br>
+
+        <!--<input id="storage" class="amountBox" type="number" name="storage"><br> -->
         <input class="add" type="button" value="Add" onclick="addItem();">
       </form>
 
@@ -46,6 +55,7 @@
               <th>Use by Date</th>
               <th>In Date?</th>
               <th>Amount</th>
+              <th>Storage</th>
             </tr>
           </head>
           <tbody id="display">
@@ -53,6 +63,7 @@
         </table>
 
         <button class="Submit" value="submit" onclick="submitList();">SUBMIT</button>
+        <button class="Submit" value="track" onclick="tracker();">Track</button>
       </div>
     </div>
 

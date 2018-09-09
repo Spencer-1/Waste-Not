@@ -20,7 +20,7 @@
           <tr>
             <th>Food Name</th>
             <th>Use by Date</th>
-            <th>Amount</th>
+            <th>Amount (g)</th>
             <th>Storage</th>
           </tr>
         </head>
@@ -28,10 +28,14 @@
         </tbody>
       </table>
 
+      <button class="Submit" value="get" onclick="getRecipes();">Get Recipes</button>
+
       <button class="Submit" value="back" onclick="addMore();">Add More Items</button>
 
-      <button class="Clear" value="Clear List" onclick="clearList();">Clear List</button>
+      <button class="Submit" value="Clear List" onclick="clearList();">Clear List</button>
     </div>
+
+    <div id="root"></div>
 
 
   <script src="Scripts/main.js"></script>

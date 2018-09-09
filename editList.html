@@ -7,7 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
   </head>
 
-  <body onload="showCurrentList()">
+  <body onload="showList()">
     <div class="banner">
       <h1>WASTE NOT...</h1>
     </div>
@@ -20,25 +20,51 @@
 
     <div class="middle-container">
       <form class="foodEntry">
-        Food Item:<br>
+        <p class="formText">Food Item:</p>
         <input id="foodItem1" class="formBox" type="text" name="foodItem"><br>
-        Use by date:<br>
-        <input id="useByDate1" class="formBox" type="number" name="useByDate"><br>
-        <input class="add" type="button" value="Add" onclick="addItem();">
+        <p class="formText">Use by date (dd/mm/yy):</p>
+        <input id="useByDate1" class="dateBox" type="number" name="useByDate">
+        <input id="useByDate2" class="dateBox" type="number" name="useByDate">
+        <input id="useByDate3" class="dateBox" type="number" name="useByDate"><br>
+        <p class="formText">Amount (g):</p>
+        <input id="amount" class="amountBox" type="number" name="amount"><br>
+        <!-- Drop down for this and date options -->
+        <p class="formText">Storage Type:</p> <!-- THIS NEEDS TO BE A DROP DOWN -->
+        <select id="storageType" name="storage" class="amountBox">
+          <option value="fridge">Fridge</option>
+          <option value="freezer">Freezer</option>
+          <option value="Cupboard">Cupboard</option>
+          <option value="Other">Other (Really?!)</option>
+        </select><br>
+
+        <!--<input id="storage" class="amountBox" type="number" name="storage"><br> -->
+        <!--<input id="storage" class="amountBox" type="number" name="storage"><br> -->
+        <input class="add" type="button" value="Add" onclick="addNewItem();">
       </form>
 
 
+      <div class="middle-container">
+        <p >My Food List:</p>
 
-      <p class="foodList">Your Food Items:<br>
-        <span id="display"></span>
-      </p>
+        <table class="foodList">
+          <thead>
+            <tr>
+              <th>Food Name</th>
+              <th>Use by Date</th>
+              <th>Amount (g)</th>
+              <th>Storage</th>
+            </tr>
+          </head>
+          <tbody id="myFoodList">
+          </tbody>
+        </table>
 
+      <button class="Submit" value="submit" onclick="submitList();">SUBMIT</button>
 
-      <button class="Submit" value="submit" onclick="submitList();">Submit</button>
     </div>
 
-  <script src="Scripts/main.js"></script>
-
   </body>
+
+  <script src="Scripts/main.js"></script>
 
 </html>

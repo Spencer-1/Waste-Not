@@ -1,8 +1,14 @@
+/* concept only may not be used */
+
+
 /*
   Author: Jack Ducasse;
   Version: 0.1.0;
   (◠‿◠✿)
 */
+
+/* REMOVE
+
 var Calendar = function(model, options, date){
   // Default Values
   this.Options = {
@@ -299,6 +305,8 @@ function caleandar(el, data, settings){
 }
 
 /* Showing existing list (if any) - does this need to come from a server? */
+
+/* REMOVE
 
 rowItem = "";
 

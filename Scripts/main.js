@@ -1,3 +1,5 @@
+/* var unirest = require('unirest');
+
 /* Storage */
 
 Storage.prototype.setObj = function(key, obj) {
@@ -26,6 +28,8 @@ function inDate() {
 
 /* Variables */
 
+recipeTitles = "";
+var ingredients = "";
 var rowItem = "";
 var foodItem = "";
 var myFood = [];
@@ -132,9 +136,9 @@ function showList() {
         "<td>" + (myFood[i].amount) + "</td>" +
         "<td>" + (myFood[i].storageType) + "</td>" +
       "</tr>";
-      console.log(rowItem);
-      document.getElementById("myFoodList").innerHTML = rowItem;
     }
+  console.log(rowItem);
+  document.getElementById("myFoodList").innerHTML = rowItem;
   rowItem = "";
   }
   else {
@@ -228,15 +232,182 @@ function addNewItem() {
   console.log(myFood);
 }
 
-/* connecting to API - setting up HTTP request */
+/* GET recipes API call with parameters */ // GET RECIPE BUTTON PRESSED ******
 
 function getRecipes() {
-  var request = new XMLHttpRequest();
-  // Open a new connection, using the GET request on the URL endpoint
-  request.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=toma&number=10", true);
-  var data = JSON.parse(this.response);
-  console.log(data);
+  console.log(myFood);
+  function formatParams(params) { // setting API parameters
+    return "?" + Object
+      .keys(params)
+      .map(function(key){
+        return key + "=" + params[key]
+      })
+      .join("&")
+  }
+
+  for (var i=0; i<myFood.length; i++) {
+    ingredients += myFood[i].name + "%2C"
+    console.log(ingredients);
+  }
+
+  var endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
+  var params = {
+    ingredients: ingredients, //A comma-separated list of ingredients that the recipes should contain.
+    number: "5", //The maximal number of recipes to return (default = 5).
+    ranking: "2", //Whether to maximize used ingredients (1) or minimize missing ingredients (2) first.
+  }
+
+  var url = endpoint + formatParams(params)
+  console.log(url);
+  myFood = JSON.parse(localStorage.getItem("myFood"));
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         // document is ready
+          var response = xhttp.responseText;
+          console.log("ok"+response);
+          response = JSON.parse(response);
+          console.log(response.length);
+          for (var i=0; i<response.length; i++) { //pulling out response titles
+            recipeTitles +=
+            "<tr>" +
+              "<td>" + (response[i].title) + "</td>" +
+            "</tr>"
+            console.log(recipeTitles);
+            document.getElementById("recipeOptions").innerHTML = recipeTitles;
+          }
+      }
+  };
+  xhttp.open("GET", url, true, "jonathanmspencer@gmail.com", "Wellington1");
+  xhttp.setRequestHeader("X-Mashape-Key", "n2HD3Iz3TBmshrhXE6mQYIZQXzTZp1MzLoYjsnbBUzzHmHvcfm")
+  xhttp.setRequestHeader("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
+  xhttp.send();
 }
+
+/*
+for (var i = 0; i < response.length; i++) {
+    var object = arrayOfObjects[i];
+    for (var property in object) {
+        alert('item ' + i + ': ' + property + '=' + object[property]);
+    }
+    // If property names are known beforehand, you can also just do e.g.
+    // alert(object.id + ',' + object.Title);
+}
+
+/*
+[{
+  "id":526435,
+  "title":"Spanish Spaghetti",
+  "image":"https://spoonacular.com/recipeImages/526435-312x231.jpg",
+  "imageType":"jpg",
+  "usedIngredientCount":4,
+  "missedIngredientCount":3,
+  "likes":16
+},
+{
+  "id":941866,
+  "title":"One-Pot Spaghetti and Meat Sauce (Stove-Top )",
+  "image":"https://spoonacular.com/recipeImages/941866-312x231.jpg",
+  "imageType":"jpg",
+  "usedIngredientCount":4,
+  "missedIngredientCount":3,
+  "likes":1
+},
+{
+  "id":365949,
+  "title":"Italian Beef with Spaghetti",
+  "image":"https://spoonacular.com/recipeImages/365949-312x231.jpg",
+  "imageType":"jpg",
+  "usedIngredientCount":4,
+  "missedIngredientCount":3,
+  "likes":0
+},
+{
+  "id":936338,
+  "title":"One-Pot Spaghetti and Meat Sauce (Stove-Top )",
+  "image":"https://spoonacular.com/recipeImages/936338-312x231.jpg",
+  "imageType":"jpg",
+  "usedIngredientCount":4,
+  "missedIngredientCount":3,
+  "likes":0
+},
+{
+  "id":415791,
+  "title":"Taco Spaghetti",
+  "image":"https://spoonacular.com/recipeImages/415791-312x231.jpg",
+  "imageType":"jpg",
+  "usedIngredientCount":4,
+  "missedIngredientCount":3,
+  "likes":0
+}]
+
+
+
+link: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=5&ranking=1",
+
+/*
+
+var url = "bla.php";
+var params = "somevariable=somevalue&anothervariable=anothervalue";
+var http = new XMLHttpRequest();
+
+http.open("GET", url+"?"+params, true);
+http.onreadystatechange = function()
+{
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+    }
+}
+http.send(null);
+
+/*
+
+response = unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=5&ranking=1",
+  headers={
+    "X-Mashape-Key": "n2HD3Iz3TBmshrhXE6mQYIZQXzTZp1MzLoYjsnbBUzzHmHvcfm",
+    "X-Mashape-Host": "spoonacular-recipe-food-nutrition-v1.p.mashape.com"
+  }
+)
+
+GET /recipes/findByIngredients?ingredients=steak&amp;number=5&amp;ranking=1 HTTP/1.1
+Host: spoonacular-recipe-food-nutrition-v1.p.mashape.com
+X-Mashape-Key: n2HD3Iz3TBmshrhXE6mQYIZQXzTZp1MzLoYjsnbBUzzHmHvcfm
+X-Mashape-Host: spoonacular-recipe-food-nutrition-v1.p.mashape.com
+Cache-Control: no-cache
+Postman-Token: 9135a2e7-d351-4d3c-abb9-ebdd87ec2310
+
+*/
+
+//////
+/*
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+        var response = xhttp.responseText;
+        console.log("ok"+response);
+    }
+};
+xhttp.open("GET", "your url", true);
+
+xhttp.send();
+
+*/
+
+///
+
+
+
+
+/* connecting to API - setting up HTTP request
+
+unirest.post('http://mockbin.com/request')
+.headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
+.send({ "parameter": 23, "foo": "bar" })
+.end(function (response) {
+  console.log(response.body);
+});
 
 /* API call for list of recipe IDs  https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
 

@@ -17,7 +17,5 @@
   },
   "homepage": "https://github.com/Spencer-1/Waste-Not#readme",
   "dependencies": {
-    "require.js": "^1.0.0",
-    "unirest": "^0.5.1"
   }
 }

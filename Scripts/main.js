@@ -28,7 +28,9 @@ function inDate() {
 
 /* Variables */
 
-recipeTitles = "";
+var id = 0;
+var recipeIds = [];
+var recipeTitles = "";
 var ingredients = "";
 var rowItem = "";
 var foodItem = "";
@@ -137,7 +139,6 @@ function showList() {
         "<td>" + (myFood[i].storageType) + "</td>" +
       "</tr>";
     }
-  console.log(rowItem);
   document.getElementById("myFoodList").innerHTML = rowItem;
   rowItem = "";
   }
@@ -247,13 +248,14 @@ function getRecipes() {
 
   for (var i=0; i<myFood.length; i++) {
     ingredients += myFood[i].name + "%2C"
-    console.log(ingredients);
   }
+
+  console.log(ingredients);
 
   var endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
   var params = {
     ingredients: ingredients, //A comma-separated list of ingredients that the recipes should contain.
-    number: "10", //The maximal number of recipes to return (default = 5).
+    number: "5", //The maximal number of recipes to return (default = 5).
     ranking: "1", //Whether to maximize used ingredients (1) or minimize missing ingredients (2) first.
   }
 
@@ -271,11 +273,54 @@ function getRecipes() {
           for (var i=0; i<response.length; i++) { //pulling out response titles
             recipeTitles +=
             "<tr>" +
-              "<td>" + (response[i].title) + "</td>" +
+                "<td>" + (response[i].title) + "</td>" +
+                "<td>" + (response[i].missedIngredientCount) + "</td>" +
+                "<td>" + "<img src=" + (response[i].image) + " onclick=recipeDetail();" + ">"  + "</td>" +
+                "<td>" + (response[i].id) + "</td>" +
             "</tr>"
-            console.log(recipeTitles);
             document.getElementById("recipeOptions").innerHTML = recipeTitles;
+            recipeIds.push((response[i].id))
           }
+          // printing recipe IDs to console
+          console.log(recipeIds);
+      }
+  };
+  xhttp.open("GET", url, true, "jonathanmspencer@gmail.com", "Wellington1");
+  xhttp.setRequestHeader("X-Mashape-Key", "n2HD3Iz3TBmshrhXE6mQYIZQXzTZp1MzLoYjsnbBUzzHmHvcfm")
+  xhttp.setRequestHeader("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
+  xhttp.send();
+}
+
+// onclick navigation and creation of recipe Page
+
+function recipeDetail() {
+
+  window.location = "recipeDetail.html";
+}
+
+// Send list of recipe IDs to new API endpoint to GET Recipe ingredient lists, amounts and instructions
+
+function getRecipeDetails() {
+  console.log(recipeIds);
+  function formatParams(params) { // setting API parameters
+    return params
+  }
+
+  id = recipeIds[0] + "/information"
+
+  var endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"
+  var params = id
+
+  var url = endpoint + formatParams(params)
+  console.log(url);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         // document is ready
+          var response = xhttp.responseText;
+          console.log("ok"+response);
+          response = JSON.parse(response);
+          console.log(response);
       }
   };
   xhttp.open("GET", url, true, "jonathanmspencer@gmail.com", "Wellington1");

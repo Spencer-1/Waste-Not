@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Waste Less</title>
+    <link rel="stylesheet" type="text/css" href="Stylesheet/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+  </head>
+
+  <body onload="showList();">
+    <div class="banner">
+      <h1>WASTE NOT...</h1>
+    </div>
+
+
+    <div class="middle-container">
+      <p >My Food List:</p>
+
+      <table class="foodList">
+        <thead>
+          <tr>
+            <th>Food Name</th>
+            <th>Use by Date</th>
+            <th>Amount (g)</th>
+            <th>Storage</th>
+          </tr>
+        </head>
+        <tbody id="myFoodList">
+        </tbody>
+      </table>
+
+      <button class="Submit" value="get" onclick="getRecipes();">Get Recipes</button>
+
+      <button class="Submit" value="back" onclick="addMore();">Add More Items</button>
+
+      <button class="Submit" value="Clear List" onclick="clearList();">Clear List</button>
+
+      <table class="foodList">
+        <thead>
+          <tr>
+            <th>Recipe Options</th>
+            <th>Missing Ingredients</th>
+            <th>Pic</th>
+            <th>ID</th>
+          </tr>
+        </head>
+        <tbody id="recipeOptions"></tbody>
+      </table>
+
+      <button class="Submit" value="Recipe Details" onclick="getRecipeDetails();">Get Details</button>
+
+    </div>
+
+    <div id="root"></div>
+
+
+  <script src="Scripts/main.js"></script>
+
+  </body>
+
+</html>
